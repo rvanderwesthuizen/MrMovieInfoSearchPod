@@ -11,6 +11,7 @@
 		C988856D273A998900708A7A /* OmdbSearchMovieDetails.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9888562273A998900708A7A /* OmdbSearchMovieDetails.framework */; };
 		C9888572273A998900708A7A /* OmdbSearchMovieDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9888571273A998900708A7A /* OmdbSearchMovieDetailsTests.swift */; };
 		C9888573273A998900708A7A /* OmdbSearchMovieDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = C9888565273A998900708A7A /* OmdbSearchMovieDetails.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9888580273A9C4C00708A7A /* SearchAndMovieDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988857F273A9C4C00708A7A /* SearchAndMovieDetailsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		C9888566273A998900708A7A /* OmdbSearchMovieDetails.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = OmdbSearchMovieDetails.docc; sourceTree = "<group>"; };
 		C988856C273A998900708A7A /* OmdbSearchMovieDetailsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OmdbSearchMovieDetailsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9888571273A998900708A7A /* OmdbSearchMovieDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmdbSearchMovieDetailsTests.swift; sourceTree = "<group>"; };
+		C988857F273A9C4C00708A7A /* SearchAndMovieDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAndMovieDetailsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,9 @@
 		C9888564273A998900708A7A /* OmdbSearchMovieDetails */ = {
 			isa = PBXGroup;
 			children = (
+				C988857E273A9BE000708A7A /* Models */,
+				C988857D273A9BA500708A7A /* ViewModel */,
+				C988857C273A9B9A00708A7A /* Repository */,
 				C9888565273A998900708A7A /* OmdbSearchMovieDetails.h */,
 				C9888566273A998900708A7A /* OmdbSearchMovieDetails.docc */,
 			);
@@ -83,6 +88,28 @@
 				C9888571273A998900708A7A /* OmdbSearchMovieDetailsTests.swift */,
 			);
 			path = OmdbSearchMovieDetailsTests;
+			sourceTree = "<group>";
+		};
+		C988857C273A9B9A00708A7A /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		C988857D273A9BA500708A7A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C988857E273A9BE000708A7A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C988857F273A9C4C00708A7A /* SearchAndMovieDetailsModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9888580273A9C4C00708A7A /* SearchAndMovieDetailsModel.swift in Sources */,
 				C9888567273A998900708A7A /* OmdbSearchMovieDetails.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,6 +426,7 @@
 		C988857A273A998900708A7A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8HDT7RV6K9;
@@ -419,6 +448,7 @@
 		C988857B273A998900708A7A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8HDT7RV6K9;
