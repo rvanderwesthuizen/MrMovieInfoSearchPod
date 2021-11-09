@@ -12,6 +12,12 @@
 		C9888572273A998900708A7A /* OmdbSearchMovieDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9888571273A998900708A7A /* OmdbSearchMovieDetailsTests.swift */; };
 		C9888573273A998900708A7A /* OmdbSearchMovieDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = C9888565273A998900708A7A /* OmdbSearchMovieDetails.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9888580273A9C4C00708A7A /* SearchAndMovieDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988857F273A9C4C00708A7A /* SearchAndMovieDetailsModel.swift */; };
+		C9888582273A9D3100708A7A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9888581273A9D3100708A7A /* SearchViewModel.swift */; };
+		C9888587273A9DB200708A7A /* RepositoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9888586273A9DB200708A7A /* RepositoryProtocols.swift */; };
+		C9888589273A9E0900708A7A /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9888588273A9E0900708A7A /* SearchRepository.swift */; };
+		C988858B273A9E8E00708A7A /* MovieDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988858A273A9E8E00708A7A /* MovieDetailsRepository.swift */; };
+		C9888590273A9F2900708A7A /* ViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988858F273A9F2900708A7A /* ViewModelDelegate.swift */; };
+		C9888592273A9F9600708A7A /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9888591273A9F9600708A7A /* CollectionExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +37,12 @@
 		C988856C273A998900708A7A /* OmdbSearchMovieDetailsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OmdbSearchMovieDetailsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9888571273A998900708A7A /* OmdbSearchMovieDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmdbSearchMovieDetailsTests.swift; sourceTree = "<group>"; };
 		C988857F273A9C4C00708A7A /* SearchAndMovieDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAndMovieDetailsModel.swift; sourceTree = "<group>"; };
+		C9888581273A9D3100708A7A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		C9888586273A9DB200708A7A /* RepositoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProtocols.swift; sourceTree = "<group>"; };
+		C9888588273A9E0900708A7A /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
+		C988858A273A9E8E00708A7A /* MovieDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsRepository.swift; sourceTree = "<group>"; };
+		C988858F273A9F2900708A7A /* ViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelDelegate.swift; sourceTree = "<group>"; };
+		C9888591273A9F9600708A7A /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +90,7 @@
 				C988857C273A9B9A00708A7A /* Repository */,
 				C9888565273A998900708A7A /* OmdbSearchMovieDetails.h */,
 				C9888566273A998900708A7A /* OmdbSearchMovieDetails.docc */,
+				C9888591273A9F9600708A7A /* CollectionExtension.swift */,
 			);
 			path = OmdbSearchMovieDetails;
 			sourceTree = "<group>";
@@ -93,6 +106,9 @@
 		C988857C273A9B9A00708A7A /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				C9888585273A9D9200708A7A /* Protocol */,
+				C9888584273A9D5D00708A7A /* MovieDetailsRepository */,
+				C9888583273A9D5100708A7A /* SearchRepository */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -100,6 +116,8 @@
 		C988857D273A9BA500708A7A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C988858E273A9F1900708A7A /* Protocol */,
+				C9888581273A9D3100708A7A /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -110,6 +128,38 @@
 				C988857F273A9C4C00708A7A /* SearchAndMovieDetailsModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C9888583273A9D5100708A7A /* SearchRepository */ = {
+			isa = PBXGroup;
+			children = (
+				C9888588273A9E0900708A7A /* SearchRepository.swift */,
+			);
+			path = SearchRepository;
+			sourceTree = "<group>";
+		};
+		C9888584273A9D5D00708A7A /* MovieDetailsRepository */ = {
+			isa = PBXGroup;
+			children = (
+				C988858A273A9E8E00708A7A /* MovieDetailsRepository.swift */,
+			);
+			path = MovieDetailsRepository;
+			sourceTree = "<group>";
+		};
+		C9888585273A9D9200708A7A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				C9888586273A9DB200708A7A /* RepositoryProtocols.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		C988858E273A9F1900708A7A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				C988858F273A9F2900708A7A /* ViewModelDelegate.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +271,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9888582273A9D3100708A7A /* SearchViewModel.swift in Sources */,
+				C9888587273A9DB200708A7A /* RepositoryProtocols.swift in Sources */,
+				C9888589273A9E0900708A7A /* SearchRepository.swift in Sources */,
+				C9888590273A9F2900708A7A /* ViewModelDelegate.swift in Sources */,
+				C988858B273A9E8E00708A7A /* MovieDetailsRepository.swift in Sources */,
+				C9888592273A9F9600708A7A /* CollectionExtension.swift in Sources */,
 				C9888580273A9C4C00708A7A /* SearchAndMovieDetailsModel.swift in Sources */,
 				C9888567273A998900708A7A /* OmdbSearchMovieDetails.docc in Sources */,
 			);
