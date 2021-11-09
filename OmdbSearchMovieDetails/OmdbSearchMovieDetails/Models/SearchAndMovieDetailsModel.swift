@@ -8,11 +8,11 @@
 import Foundation
 
 //MARK: - SearchModel
-struct SearchModel: Codable {
-    let results: [Search]
-    let totalResults: String
+public struct SearchModel: Codable {
+    public let results: [Search]
+    public let totalResults: String
     
-    var numberOfPages: Int {
+    public var numberOfPages: Int {
         let number = (Int(totalResults) ?? 0)
         if number % 10 != 0 {
             return number > 0 ? ((number / 10) + 1) : 0
@@ -28,12 +28,12 @@ struct SearchModel: Codable {
     }
 }
 
-struct Search: Codable {
-    let title: String
-    let year: String
-    let imdbID: String
-    let type: String
-    let poster: String
+public struct Search: Codable {
+    public let title: String
+    public let year: String
+    public let imdbID: String
+    public let type: String
+    public let poster: String
     
     private enum CodingKeys: String, CodingKey {
         case title = "Title"
@@ -45,46 +45,25 @@ struct Search: Codable {
 }
 
 //MARK: - MovieDetails
-struct MovieDetails: Codable {
-    let title: String
-    let year: String
-    let rated: String
-    let released: String
-    let runtime: String
-    let genre: String
-    let director: String
-    let writer: String
-    let actors: String
-    let plot: String
-    let language: String
-    let awards: String
-    let poster: String
-    let imdbRating: String
-    let imdbID: String
-    let boxOffice: String
-    let type: String
-    let productionStudio: String
-    
-    init(title: String, year: String, rated: String, released: String, runtime: String, genre: String, director: String, writer: String, actors: String, plot: String, language: String, awards: String, poster: String, imdbRating: String, imdbID: String, boxOffice: String, type: String, productionStudio : String) {
-        self.title = title
-        self.year = year
-        self.rated = rated
-        self.released = released
-        self.runtime = runtime
-        self.genre = genre
-        self.director = director
-        self.writer = writer
-        self.actors = actors
-        self.plot = plot
-        self.language = language
-        self.awards = awards
-        self.poster = poster
-        self.imdbRating = imdbRating
-        self.imdbID = imdbID
-        self.boxOffice = boxOffice
-        self.type = type
-        self.productionStudio = productionStudio
-    }
+public struct MovieDetails: Codable {
+    public let title: String
+    public let year: String
+    public let rated: String
+    public let released: String
+    public let runtime: String
+    public let genre: String
+    public let director: String
+    public let writer: String
+    public let actors: String
+    public let plot: String
+    public let language: String
+    public let awards: String
+    public let poster: String
+    public let imdbRating: String
+    public let imdbID: String
+    public let boxOffice: String
+    public let type: String
+    public let productionStudio: String
     
     var dictionary: [String: String] {
         return ["Title": title,

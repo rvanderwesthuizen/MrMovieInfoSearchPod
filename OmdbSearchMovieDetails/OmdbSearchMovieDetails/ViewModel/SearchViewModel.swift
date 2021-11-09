@@ -15,15 +15,15 @@ public class SearchViewModel {
     private(set) var pageNumber = 1
     private var searchResultsList: [Search] = []
     
-    var movieDetails: MovieDetails?
+    public var movieDetails: MovieDetails?
     
-    init(searchRepository: SearchRepositable, delegate: ViewModelDelegate, movieDetailsRepository: MovieDetailRepositable) {
+    public init(searchRepository: SearchRepositable, delegate: ViewModelDelegate, movieDetailsRepository: MovieDetailRepositable) {
         self.searchRepository = searchRepository
         self.delegate = delegate
         self.movieDetailsRepository = movieDetailsRepository
     }
     
-    func retrieveMovieDetails(at index: Int) {
+    public func retrieveMovieDetails(at index: Int) {
         guard let imdbID = fetchSelectedImdbID(at: index) else { return }
         movieDetailsRepository.performRequestWith(imdbID: imdbID) {[weak self] result in
             switch result {
@@ -36,7 +36,7 @@ public class SearchViewModel {
         }
     }
     
-    func retrieveData(forTitle title: String, page: Int) {
+    public func retrieveData(forTitle title: String, page: Int) {
         searchRepository.performRequestWith(title: title, pageNumber: page) { [weak self] result in
             switch result {
             case .success(let response):
@@ -49,19 +49,19 @@ public class SearchViewModel {
         }
     }
     
-    func initialSearch(forTitle title: String) {
+    public func initialSearch(forTitle title: String) {
         searchRepositoryResponse = nil
         searchResultsList.removeAll()
         pageNumber = 1
         search(forTitle: title)
     }
     
-    func search(forTitle title: String) {
+    public func search(forTitle title: String) {
         let currentSearch = getCurrentSearchInfo(title: title)
         retrieveData(forTitle: currentSearch.title, page: currentSearch.pageNumber)
     }
     
-    func getCurrentSearchInfo(title: String) -> (title: String, pageNumber: Int) {
+    public func getCurrentSearchInfo(title: String) -> (title: String, pageNumber: Int) {
         if let numberOfPages = searchRepositoryResponse?.numberOfPages,
            pageNumber < numberOfPages {
             pageNumber += 1
@@ -81,11 +81,11 @@ public class SearchViewModel {
 
 extension SearchViewModel {
     
-    var numberOfRows: Int {
+    public var numberOfRows: Int {
         searchResultsList.count
     }
     
-    func fetchSearchResult(at index: Int) -> Search? {
+    public func fetchSearchResult(at index: Int) -> Search? {
         searchResultsList[safe: index]
     }
 }

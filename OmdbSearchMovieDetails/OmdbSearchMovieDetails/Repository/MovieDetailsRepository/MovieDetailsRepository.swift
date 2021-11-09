@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct MovieDetailsRepository: MovieDetailRepositable {
-    func performRequestWith(imdbID: String, completion: @escaping movieDetailsRepositoryResponseBlock) {
+public struct MovieDetailsRepository: MovieDetailRepositable {
+    public func performRequestWith(imdbID: String, completion: @escaping movieDetailsRepositoryResponseBlock) {
         let urlString = "https://www.omdbapi.com/?apikey=335142df&i=\(imdbID)"
         guard let url = URL(string: urlString) else { return }
         let session = URLSession(configuration: .default)

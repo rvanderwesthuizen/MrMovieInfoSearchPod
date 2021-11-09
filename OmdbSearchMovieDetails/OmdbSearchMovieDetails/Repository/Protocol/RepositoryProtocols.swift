@@ -7,13 +7,13 @@
 
 import Foundation
 
-typealias repositoryResponseBlock = ((Result<SearchModel,Error>) -> Void)
-typealias movieDetailsRepositoryResponseBlock = ((Result<MovieDetails,Error>) -> Void)
+public typealias repositoryResponseBlock = ((Result<SearchModel,Error>) -> Void)
+public typealias movieDetailsRepositoryResponseBlock = ((Result<MovieDetails,Error>) -> Void)
 
-protocol SearchRepositable {
+public protocol SearchRepositable {
     func performRequestWith(title: String, pageNumber: Int, completion: @escaping repositoryResponseBlock)
 }
 
-protocol MovieDetailRepositable {
+public protocol MovieDetailRepositable {
     func performRequestWith(imdbID: String, completion: @escaping movieDetailsRepositoryResponseBlock)
 }
