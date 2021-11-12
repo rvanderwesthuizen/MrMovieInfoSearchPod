@@ -65,7 +65,7 @@ public class SearchViewModel {
         let titleForSearch = title.replacingOccurrences(of: " ", with: "+")
         guard let numberOfPages = searchRepositoryResponse?.numberOfPages else {
             return (title: titleForSearch, pageNumber: pageNumber) }
-        if pageNumber <= numberOfPages, !(pageNumber > numberOfPages) {
+        if pageNumber < numberOfPages, !(pageNumber > numberOfPages) {
             pageNumber += 1
         } else {
             return nil
