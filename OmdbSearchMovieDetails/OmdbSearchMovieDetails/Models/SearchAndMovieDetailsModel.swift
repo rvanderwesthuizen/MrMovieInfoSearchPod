@@ -45,7 +45,7 @@ public struct Search: Codable {
 }
 
 //MARK: - MovieDetails
-public struct MovieDetails: Codable {
+@objcMembers public class MovieDetails: NSObject, Codable {
     public let title: String
     public let year: String
     public let rated: String
@@ -65,7 +65,28 @@ public struct MovieDetails: Codable {
     public let type: String
     public let productionStudio: String
     
-    var dictionary: [String: String] {
+    public init(title: String, year: String, rated: String, released: String, runtime: String, genre: String, director: String, writer: String, actors: String, plot: String, language: String, awards: String, poster: String, imdbRating: String, imdbID: String, boxOffice: String, type: String, productionStudio: String) {
+        self.title = title
+        self.year = year
+        self.rated = rated
+        self.released = released
+        self.runtime = runtime
+        self.genre = genre
+        self.director = director
+        self.writer = writer
+        self.actors = actors
+        self.plot = plot
+        self.language = language
+        self.awards = awards
+        self.poster = poster
+        self.imdbRating = imdbRating
+        self.imdbID = imdbID
+        self.boxOffice = boxOffice
+        self.type = type
+        self.productionStudio = productionStudio
+    }
+    
+    public var dictionary: [String: String] {
         return ["Title": title,
                 "Year": year,
                 "Rated": rated,

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol ViewModelDelegate: AnyObject {
+public protocol PodViewModelDelegate: AnyObject {
     func refreshViewContent(navigateToMovieDetailsFlag: Bool)
     func didFailWithError(error: Error)
 }
