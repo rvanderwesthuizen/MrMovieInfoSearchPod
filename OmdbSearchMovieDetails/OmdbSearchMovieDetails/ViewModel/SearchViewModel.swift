@@ -10,14 +10,14 @@ import Foundation
 public class SearchViewModel {
     private var movieDetailsRepository: MovieDetailRepositable
     private var searchRepository: SearchRepositable
-    private weak var delegate: ViewModelDelegate?
+    private weak var delegate: PodViewModelDelegate?
     private var searchRepositoryResponse: SearchModel?
     private(set) var pageNumber = 1
     private var searchResultsList: [Search] = []
     
     public var movieDetails: MovieDetails?
     
-    public init(searchRepository: SearchRepositable, delegate: ViewModelDelegate, movieDetailsRepository: MovieDetailRepositable) {
+    public init(searchRepository: SearchRepositable = SearchRepository(), delegate: PodViewModelDelegate, movieDetailsRepository: MovieDetailRepositable = MovieDetailsRepository()) {
         self.searchRepository = searchRepository
         self.delegate = delegate
         self.movieDetailsRepository = movieDetailsRepository
@@ -57,16 +57,19 @@ public class SearchViewModel {
     }
     
     public func search(forTitle title: String) {
-        let currentSearch = getCurrentSearchInfo(title: title)
+        guard let currentSearch = getCurrentSearchInfo(title: title) else { return }
         retrieveData(forTitle: currentSearch.title, page: currentSearch.pageNumber)
     }
     
-    public func getCurrentSearchInfo(title: String) -> (title: String, pageNumber: Int) {
-        if let numberOfPages = searchRepositoryResponse?.numberOfPages,
-           pageNumber < numberOfPages {
-            pageNumber += 1
-        }
+    public func getCurrentSearchInfo(title: String) -> (title: String, pageNumber: Int)? {
         let titleForSearch = title.replacingOccurrences(of: " ", with: "+")
+        guard let numberOfPages = searchRepositoryResponse?.numberOfPages else {
+            return (title: titleForSearch, pageNumber: pageNumber) }
+        if pageNumber < numberOfPages {
+            pageNumber += 1
+        } else {
+            return nil
+        }
         return (title: titleForSearch, pageNumber: pageNumber)
     }
     

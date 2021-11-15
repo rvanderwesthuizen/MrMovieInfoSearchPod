@@ -8,6 +8,7 @@
 import Foundation
 
 public struct SearchRepository: SearchRepositable {
+    public init() {}
     public func performRequestWith(title: String, pageNumber: Int, completion: @escaping repositoryResponseBlock) {
         let urlString = "https://www.omdbapi.com/?apikey=335142df&s=\(title)&page=\(pageNumber)"
         guard let url = URL(string: urlString) else { return }

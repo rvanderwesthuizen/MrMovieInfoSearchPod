@@ -15,7 +15,7 @@
 		C9888587273A9DB200708A7A /* RepositoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9888586273A9DB200708A7A /* RepositoryProtocols.swift */; };
 		C9888589273A9E0900708A7A /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9888588273A9E0900708A7A /* SearchRepository.swift */; };
 		C988858B273A9E8E00708A7A /* MovieDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988858A273A9E8E00708A7A /* MovieDetailsRepository.swift */; };
-		C9888590273A9F2900708A7A /* ViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988858F273A9F2900708A7A /* ViewModelDelegate.swift */; };
+		C9888590273A9F2900708A7A /* PodViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988858F273A9F2900708A7A /* PodViewModelDelegate.swift */; };
 		C9888592273A9F9600708A7A /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9888591273A9F9600708A7A /* CollectionExtension.swift */; };
 		C9D25D4E273AB846004B96F5 /* MockedMovieDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D25D4D273AB846004B96F5 /* MockedMovieDetailsRepository.swift */; };
 		C9D25D50273AB856004B96F5 /* MockedSearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D25D4F273AB856004B96F5 /* MockedSearchRepository.swift */; };
@@ -44,7 +44,7 @@
 		C9888586273A9DB200708A7A /* RepositoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProtocols.swift; sourceTree = "<group>"; };
 		C9888588273A9E0900708A7A /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
 		C988858A273A9E8E00708A7A /* MovieDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsRepository.swift; sourceTree = "<group>"; };
-		C988858F273A9F2900708A7A /* ViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelDelegate.swift; sourceTree = "<group>"; };
+		C988858F273A9F2900708A7A /* PodViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodViewModelDelegate.swift; sourceTree = "<group>"; };
 		C9888591273A9F9600708A7A /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
 		C9D25D4D273AB846004B96F5 /* MockedMovieDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedMovieDetailsRepository.swift; sourceTree = "<group>"; };
 		C9D25D4F273AB856004B96F5 /* MockedSearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedSearchRepository.swift; sourceTree = "<group>"; };
@@ -169,7 +169,7 @@
 		C988858E273A9F1900708A7A /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				C988858F273A9F2900708A7A /* ViewModelDelegate.swift */,
+				C988858F273A9F2900708A7A /* PodViewModelDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -286,7 +286,7 @@
 				C9888582273A9D3100708A7A /* SearchViewModel.swift in Sources */,
 				C9888587273A9DB200708A7A /* RepositoryProtocols.swift in Sources */,
 				C9888589273A9E0900708A7A /* SearchRepository.swift in Sources */,
-				C9888590273A9F2900708A7A /* ViewModelDelegate.swift in Sources */,
+				C9888590273A9F2900708A7A /* PodViewModelDelegate.swift in Sources */,
 				C988858B273A9E8E00708A7A /* MovieDetailsRepository.swift in Sources */,
 				C9888592273A9F9600708A7A /* CollectionExtension.swift in Sources */,
 				C9888580273A9C4C00708A7A /* SearchAndMovieDetailsModel.swift in Sources */,

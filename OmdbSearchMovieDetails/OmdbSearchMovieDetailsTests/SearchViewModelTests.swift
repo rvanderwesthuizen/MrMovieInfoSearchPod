@@ -68,7 +68,7 @@ class SearchViewModelTests: XCTestCase {
     }
     
     func testgetCurrentSearchInfoReturn1ForPageNumberWhenNoCallHasBeenMade() {
-        let currentSearchInfo = implementationUnderTest.getCurrentSearchInfo(title: "the flash")
+        let currentSearchInfo = implementationUnderTest.getCurrentSearchInfo(title: "the flash")!
         XCTAssertEqual(1, currentSearchInfo.pageNumber)
         XCTAssertEqual("the+flash", currentSearchInfo.title)
     }
@@ -76,7 +76,7 @@ class SearchViewModelTests: XCTestCase {
     func testgetCurrentSearchInfoReturn2ForPageNumberWhenOneCallHasBeenMade() {
         let title = "the flash"
         implementationUnderTest.search(forTitle: title)
-        let currentSearchInfo = implementationUnderTest.getCurrentSearchInfo(title: title)
+        let currentSearchInfo = implementationUnderTest.getCurrentSearchInfo(title: title)!
         XCTAssertEqual(currentSearchInfo.pageNumber, 2)
     }
     
@@ -95,7 +95,7 @@ class SearchViewModelTests: XCTestCase {
         XCTAssertTrue(mockDelegate.didFailWithErrorCalled)
     }
     
-    class MockDelegate: ViewModelDelegate {
+    class MockDelegate: PodViewModelDelegate {
         
         var refreshCalled = false
         var didFailWithErrorCalled = false
