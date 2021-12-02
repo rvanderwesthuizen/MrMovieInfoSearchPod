@@ -31,8 +31,7 @@ public class SearchViewModel {
                 switch result {
                 case .success(let response):
                     hasSuccessfulResult = true
-                    
-                    
+                    self?.movieDetails = response
                     let suggestion = SuggestionModel(title: response.title, posterImage: UIImage().loadImage(urlString: response.poster), imdbID: response.imdbID)
                     
                     self?.delegate?.didRetrieveSuggestionDetails(suggestion: suggestion)
