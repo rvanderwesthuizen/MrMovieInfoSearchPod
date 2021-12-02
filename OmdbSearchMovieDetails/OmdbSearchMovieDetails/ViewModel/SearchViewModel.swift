@@ -23,6 +23,30 @@ public class SearchViewModel {
         self.movieDetailsRepository = movieDetailsRepository
     }
     
+    public func retrieveSuggestion() {
+        var hasSuccessfulSuggestion = false
+        let id = "tt\(getRandomID())"
+        while hasSuccessfulSuggestion == false {
+            movieDetailsRepository.performRequestWith(imdbID: id) { [weak self] result in
+                switch result {
+                case .success(let response):
+                    self?.delegate?.didRetrieveSuggestion(suggestion: response)
+                case .failure(_):
+                    hasSuccessfulSuggestion = false
+                }
+            }
+        }
+    }
+    
+    private func getRandomID() -> String {
+        var numbers = ""
+        for _ in 0...6 {
+            numbers.append(String(Int.random(in: 0...9)))
+        }
+        
+        return numbers
+    }
+    
     public func retrieveMovieDetails(at index: Int) {
         guard let imdbID = fetchSelectedImdbID(at: index) else { return }
         movieDetailsRepository.performRequestWith(imdbID: imdbID) {[weak self] result in
