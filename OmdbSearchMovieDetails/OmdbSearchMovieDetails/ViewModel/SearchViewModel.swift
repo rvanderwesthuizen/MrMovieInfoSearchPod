@@ -31,6 +31,7 @@ public class SearchViewModel {
                 switch result {
                 case .success(let response):
                     hasSuccessfulSuggestion = true
+                    self?.movieDetails = response
                     self?.delegate?.didRetrieveSuggestion(suggestion: response)
                 case .failure(_):
                     hasSuccessfulSuggestion = false
