@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol PodViewModelDelegate: AnyObject {
-    func didRetrieveSuggestionDetails(suggestion: MovieDetails)
+    func didRetrieveSuggestionDetails(suggestion: SuggestionModel)
     func refreshViewContent(navigateToMovieDetailsFlag: Bool)
     func didFailWithError(error: Error)
 }
