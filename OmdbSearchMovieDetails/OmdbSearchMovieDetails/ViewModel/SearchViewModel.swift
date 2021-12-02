@@ -30,6 +30,7 @@ public class SearchViewModel {
             movieDetailsRepository.performRequestWith(imdbID: id) { [weak self] result in
                 switch result {
                 case .success(let response):
+                    hasSuccessfulSuggestion = true
                     self?.delegate?.didRetrieveSuggestion(suggestion: response)
                 case .failure(_):
                     hasSuccessfulSuggestion = false
