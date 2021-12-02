@@ -25,8 +25,8 @@ public class SearchViewModel {
     
     public func retrieveSuggestion() {
         var hasSuccessfulSuggestion = false
-        let id = "tt\(getRandomID())"
         while hasSuccessfulSuggestion == false {
+            let id = "tt\(getRandomID())"
             movieDetailsRepository.performRequestWith(imdbID: id) { [weak self] result in
                 switch result {
                 case .success(let response):
