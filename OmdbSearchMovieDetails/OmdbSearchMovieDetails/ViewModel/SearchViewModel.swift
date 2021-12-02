@@ -14,6 +14,7 @@ public class SearchViewModel {
     private var searchRepositoryResponse: SearchModel?
     private(set) var pageNumber = 1
     private var searchResultsList: [Search] = []
+    private var dispatchGroup = DispatchGroup()
     
     public var movieDetails: MovieDetails?
     
@@ -24,17 +25,17 @@ public class SearchViewModel {
     }
     
     public func retrieveSuggestion() {
-        var hasSuccessfulSuggestion = false
-        while hasSuccessfulSuggestion == false {
-            let id = "tt\(getRandomID())"
-            movieDetailsRepository.performRequestWith(imdbID: id) { [weak self] result in
-                switch result {
-                case .success(let response):
-                    hasSuccessfulSuggestion = true
-                    self?.movieDetails = response
-                    self?.delegate?.didRetrieveSuggestion(suggestion: response)
-                case .failure(_):
-                    hasSuccessfulSuggestion = false
+        let id = "tt\(getRandomID())"
+        movieDetailsRepository.performRequestWith(imdbID: id) { [weak self] result in
+            switch result {
+            case .success(let response):
+                self?.movieDetails = response
+                self?.delegate?.didRetrieveSuggestion(suggestion: response)
+            case .failure(let error):
+                if error == .IDNotFoundError {
+                    self?.retrieveSuggestion()
+                } else {
+                    self?.delegate?.didFailWithError(error: error)
                 }
             }
         }

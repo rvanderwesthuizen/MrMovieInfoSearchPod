@@ -46,26 +46,28 @@ public struct Search: Codable {
 
 //MARK: - MovieDetails
 @objcMembers public class MovieDetails: NSObject, Codable {
-    public let title: String
-    public let year: String
-    public let rated: String
-    public let released: String
-    public let runtime: String
-    public let genre: String
-    public let director: String
-    public let writer: String
-    public let actors: String
-    public let plot: String
-    public let language: String
-    public let awards: String
-    public let poster: String
-    public let imdbRating: String
-    public let imdbID: String
-    public let boxOffice: String
-    public let type: String
-    public let productionStudio: String
+    public let title: String?
+    public let year: String?
+    public let rated: String?
+    public let released: String?
+    public let runtime: String?
+    public let genre: String?
+    public let director: String?
+    public let writer: String?
+    public let actors: String?
+    public let plot: String?
+    public let language: String?
+    public let awards: String?
+    public let poster: String?
+    public let imdbRating: String?
+    public let imdbID: String?
+    public let boxOffice: String?
+    public let type: String?
+    public let productionStudio: String?
+    public let error: String?
+    public let response: String
     
-    public init(title: String, year: String, rated: String, released: String, runtime: String, genre: String, director: String, writer: String, actors: String, plot: String, language: String, awards: String, poster: String, imdbRating: String, imdbID: String, boxOffice: String, type: String, productionStudio: String) {
+    public init(title: String, year: String, rated: String, released: String, runtime: String, genre: String, director: String, writer: String, actors: String, plot: String, language: String, awards: String, poster: String, imdbRating: String, imdbID: String, boxOffice: String, type: String, productionStudio: String, error: String, response: String) {
         self.title = title
         self.year = year
         self.rated = rated
@@ -84,27 +86,30 @@ public struct Search: Codable {
         self.boxOffice = boxOffice
         self.type = type
         self.productionStudio = productionStudio
+        self.error = error
+        self.response = response
     }
     
     public var dictionary: [String: String] {
-        return ["Title": title,
-                "Year": year,
-                "Rated": rated,
-                "Runtime": runtime,
-                "Released": released,
-                "Genre": genre,
-                "Director": director,
-                "Writer": writer,
-                "Actors": actors,
-                "Plot": plot,
-                "Language": language,
-                "Awards": awards,
-                "Poster": poster,
-                "imdbRating": imdbRating,
-                "imdbID": imdbID,
-                "Type": type,
-                "Production": productionStudio,
-                "BoxOffice": boxOffice
+        return ["Title": title ?? "N/A",
+                "Year": year ?? "N/A",
+                "Rated": rated ?? "N/A",
+                "Runtime": runtime ?? "N/A",
+                "Released": released ?? "N/A",
+                "Genre": genre ?? "N/A",
+                "Director": director ?? "N/A",
+                "Writer": writer ?? "N/A",
+                "Actors": actors ?? "N/A",
+                "Plot": plot ?? "N/A",
+                "Language": language ?? "N/A",
+                "Awards": awards ?? "N/A",
+                "Poster": poster ?? "N/A",
+                "imdbRating": imdbRating ?? "N/A",
+                "imdbID": imdbID ?? "N/A",
+                "Type": type ?? "N/A",
+                "Production": productionStudio ?? "N/A",
+                "BoxOffice": boxOffice ?? "N/A",
+                "Response": response
         ]
     }
     
@@ -127,5 +132,7 @@ public struct Search: Codable {
         case type = "Type"
         case productionStudio = "Production"
         case boxOffice = "BoxOffice"
+        case error = "Error"
+        case response = "Response"
     }
 }
