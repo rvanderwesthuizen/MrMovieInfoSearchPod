@@ -8,7 +8,7 @@
 import Foundation
 
 public typealias repositoryResponseBlock = ((Result<SearchModel,Error>) -> Void)
-public typealias movieDetailsRepositoryResponseBlock = ((Result<MovieDetails,Error>) -> Void)
+public typealias movieDetailsRepositoryResponseBlock = ((Result<MovieDetails,APIError>) -> Void)
 
 public protocol SearchRepositable {
     func performRequestWith(title: String, pageNumber: Int, completion: @escaping repositoryResponseBlock)

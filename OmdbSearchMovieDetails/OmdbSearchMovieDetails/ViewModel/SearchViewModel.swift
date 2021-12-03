@@ -14,6 +14,7 @@ public class SearchViewModel {
     private var searchRepositoryResponse: SearchModel?
     private(set) var pageNumber = 1
     private var searchResultsList: [Search] = []
+    private var dispatchGroup = DispatchGroup()
     
     public var movieDetails: MovieDetails?
     
@@ -21,6 +22,32 @@ public class SearchViewModel {
         self.searchRepository = searchRepository
         self.delegate = delegate
         self.movieDetailsRepository = movieDetailsRepository
+    }
+    
+    public func retrieveSuggestion() {
+        let id = "tt\(getRandomID())"
+        movieDetailsRepository.performRequestWith(imdbID: id) { [weak self] result in
+            switch result {
+            case .success(let response):
+                self?.movieDetails = response
+                self?.delegate?.didRetrieveSuggestion(suggestion: response)
+            case .failure(let error):
+                if error == .IDNotFoundError {
+                    self?.retrieveSuggestion()
+                } else {
+                    self?.delegate?.didFailWithError(error: error)
+                }
+            }
+        }
+    }
+    
+    private func getRandomID() -> String {
+        var numbers = ""
+        for _ in 0...6 {
+            numbers.append(String(Int.random(in: 0...9)))
+        }
+        
+        return numbers
     }
     
     public func retrieveMovieDetails(at index: Int) {
