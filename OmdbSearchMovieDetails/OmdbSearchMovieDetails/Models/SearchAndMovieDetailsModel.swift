@@ -67,7 +67,27 @@ public struct Search: Codable {
     public let error: String?
     public let response: String
     
-    public init(title: String, year: String, rated: String, released: String, runtime: String, genre: String, director: String, writer: String, actors: String, plot: String, language: String, awards: String, poster: String, imdbRating: String, imdbID: String, boxOffice: String, type: String, productionStudio: String, error: String, response: String) {
+    public init(title: String,
+                year: String,
+                rated: String,
+                released: String,
+                runtime: String,
+                genre: String,
+                director: String,
+                writer: String,
+                actors: String,
+                plot: String,
+                language: String,
+                awards: String,
+                poster: String,
+                imdbRating: String,
+                imdbID: String,
+                boxOffice: String,
+                type: String,
+                productionStudio: String,
+                error: String,
+                response: String) {
+        
         self.title = title
         self.year = year
         self.rated = rated
