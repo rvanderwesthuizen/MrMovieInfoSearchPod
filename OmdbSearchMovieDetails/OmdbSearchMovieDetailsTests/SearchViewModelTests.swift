@@ -95,8 +95,32 @@ class SearchViewModelTests: XCTestCase {
         XCTAssertTrue(mockDelegate.didFailWithErrorCalled)
     }
     
+    func testRetrieveSuggestionWithoutAnyFailures() {
+        mockedMovieDetailsRepo.shouldFail = false
+        mockedMovieDetailsRepo.shouldFailToFindID = false
+        implementationUnderTest.retrieveSuggestion()
+        XCTAssertNotNil(implementationUnderTest.movieDetails)
+        XCTAssertTrue(mockDelegate.didRetrieveSuggestionCalled)
+    }
+    
+    func testRetrieveSuggestionWhenRepoFailsAndItIsNotIDNotFoundError() {
+        mockedMovieDetailsRepo.shouldFail = true
+        implementationUnderTest.retrieveSuggestion()
+        XCTAssertNil(implementationUnderTest.movieDetails)
+        XCTAssertTrue(mockDelegate.didFailWithErrorCalled)
+    }
+    
+    func testRetrieveSuggestionWhenRepoFailsWithIDNotFoundError() {
+        mockedMovieDetailsRepo.shouldFail = false
+        mockedMovieDetailsRepo.shouldFailToFindID = true
+        implementationUnderTest.retrieveSuggestion()
+        XCTAssertNotNil(implementationUnderTest.movieDetails)
+        XCTAssertTrue(mockDelegate.didRetrieveSuggestionCalled)
+        XCTAssertFalse(mockDelegate.didFailWithErrorCalled)
+    }
+    
     class MockDelegate: PodViewModelDelegate {
-        
+        var didRetrieveSuggestionCalled = false
         var refreshCalled = false
         var didFailWithErrorCalled = false
         var navigationTriggered = false
@@ -110,6 +134,10 @@ class SearchViewModelTests: XCTestCase {
         
         func didFailWithError(error: Error) {
             didFailWithErrorCalled = true
+        }
+        
+        func didRetrieveSuggestion(suggestion: MovieDetails) {
+            didRetrieveSuggestionCalled = true
         }
     }
 }
