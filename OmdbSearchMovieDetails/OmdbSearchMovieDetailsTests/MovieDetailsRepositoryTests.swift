@@ -30,9 +30,22 @@ class MovieDetailsRepositoryTests: XCTestCase {
         implementationUnderTests.performRequestWith(imdbID: "") { result in
             switch result {
             case(.success(_)):
-                XCTFail("Repository should not be successful")
+                XCTFail("Repository should fail with serverError")
             case (.failure(let error)):
-                XCTAssertEqual("The operation couldn’t be completed. (OmdbSearchMovieDetailsTests.customError error 0.)", error.localizedDescription)
+                XCTAssertEqual(.serverError, error)
+            }
+        }
+    }
+    
+    func testIDNotFoundRepositoryFailure() {
+        implementationUnderTests.shouldFail = false
+        implementationUnderTests.shouldFailToFindID = true
+        implementationUnderTests.performRequestWith(imdbID: "") { result in
+            switch result {
+            case .success(_):
+                XCTFail("Repository should fail with IDNotFound error")
+            case .failure(let error):
+                XCTAssertEqual(error, .IDNotFoundError)
             }
         }
     }
