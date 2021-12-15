@@ -25,8 +25,9 @@ class Service {
             }
             do {
                 let result = try JSONDecoder().decode(expecting, from: data!)
-                
-                completion(.success(result))
+                DispatchQueue.main.async {
+                    completion(.success(result))
+                }
             } catch {
                 DispatchQueue.main.async {
                     completion(.failure(APIError.parsingError))
