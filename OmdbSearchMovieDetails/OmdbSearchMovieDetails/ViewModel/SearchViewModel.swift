@@ -32,7 +32,7 @@ public class SearchViewModel {
                 self?.movieDetails = response
                 self?.delegate?.didRetrieveSuggestion(suggestion: response)
             case .failure(let error):
-                if error == .IDNotFoundError {
+                if error == APIError.IDNotFoundError {
                     self?.retrieveSuggestion()
                 } else {
                     self?.delegate?.didFailWithError(error: error)
@@ -68,7 +68,8 @@ public class SearchViewModel {
             switch result {
             case .success(let response):
                 self?.searchRepositoryResponse = response
-                self?.appendToSearchResults(results: response.results)
+                guard let results = response.results else { return }
+                self?.appendToSearchResults(results: results)
                 self?.delegate?.refreshViewContent(navigateToMovieDetailsFlag: false)
             case .failure(let error):
                 self?.delegate?.didFailWithError(error: error)

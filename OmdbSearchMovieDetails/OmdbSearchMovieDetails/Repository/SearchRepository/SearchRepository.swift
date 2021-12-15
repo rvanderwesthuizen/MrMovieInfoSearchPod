@@ -10,26 +10,41 @@ import Foundation
 public struct SearchRepository: SearchRepositable {
     public init() {}
     public func performRequestWith(title: String, pageNumber: Int, completion: @escaping repositoryResponseBlock) {
-        let urlString = "https://www.omdbapi.com/?apikey=335142df&s=\(title)&page=\(pageNumber)"
-        guard let url = URL(string: urlString) else { return }
-        let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: url) { data, _, error in
-            if error != nil {
-                DispatchQueue.main.async {
-                    completion(.failure(error!))
-                }
-            }
-            do {
-                let searchResults = try JSONDecoder().decode(SearchModel.self, from: data!)
-                DispatchQueue.main.async {
-                    completion(.success(searchResults))
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    completion(.failure(error))
+        let url = URL(string: "https://www.omdbapi.com/?apikey=335142df&s=\(title)&page=\(pageNumber)")
+        
+        Service.performRequest(url: url, expecting: SearchModel.self) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error as! APIError))
+            case .success(let response):
+                if response.response == "True" {
+                    DispatchQueue.main.async {
+                        completion(.success(response))
+                    }
+                } else if response.response == "False" {
+                    DispatchQueue.main.async {
+                        if response.response == "True" {
+                            DispatchQueue.main.async {
+                                completion(.success(response))
+                            }
+                        } else if response.response == "False" {
+                            DispatchQueue.main.async {
+                                guard let responseError = response.error else { return }
+                                switch responseError {
+                                case "Too many results." :
+                                    completion(.failure(APIError.ambiguousError))
+                                case "Incorrect IMDb ID.":
+                                    completion(.failure(APIError.invalidID))
+                                case "Movie not found!":
+                                    completion(.failure(APIError.movieNotFoundError))
+                                default:
+                                    break
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
-        task.resume()
     }
 }

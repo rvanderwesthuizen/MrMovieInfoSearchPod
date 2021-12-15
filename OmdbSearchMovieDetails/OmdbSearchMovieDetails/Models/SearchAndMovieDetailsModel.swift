@@ -9,22 +9,29 @@ import Foundation
 
 //MARK: - SearchModel
 public struct SearchModel: Codable {
-    public let results: [Search]
-    public let totalResults: String
+    public let results: [Search]?
+    public let totalResults: String?
+    public let error: String?
+    public let response: String
     
     public var numberOfPages: Int {
-        let number = (Int(totalResults) ?? 0)
-        if number % 10 != 0 {
-            return number > 0 ? ((number / 10) + 1) : 0
+        if let total = totalResults {
+            let number = (Int(total) ?? 0)
+            if number % 10 != 0 {
+                return number > 0 ? ((number / 10) + 1) : 0
+            } else {
+                return number > 0 ? (number / 10) : 0
+            }
         } else {
-            return number > 0 ? (number / 10) : 0
+            return 1
         }
-        
     }
     
     private enum CodingKeys: String, CodingKey {
         case results = "Search"
         case totalResults
+        case error = "Error"
+        case response = "Response"
     }
 }
 
