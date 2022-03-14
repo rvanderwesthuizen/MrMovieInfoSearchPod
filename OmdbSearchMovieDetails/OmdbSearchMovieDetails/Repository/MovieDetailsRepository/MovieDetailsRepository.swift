@@ -10,43 +10,28 @@ import Foundation
 public struct MovieDetailsRepository: MovieDetailRepositable {
     public init() {}
     public func performRequestWith(imdbID: String, completion: @escaping movieDetailsRepositoryResponseBlock) {
-        let urlString = "https://www.omdbapi.com/?apikey=335142df&i=\(imdbID)"
-        guard let url = URL(string: urlString) else { return }
-        let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: url) { data, _, error in
-            if error != nil {
-                completion(.failure(.serverError))
-            }
-            do {
-                let movieDetails = try JSONDecoder().decode(MovieDetails.self, from: data!)
-                
-                if movieDetails.response == "True" {
+        let url = URL(string: "https://www.omdbapi.com/?apikey=335142df&i=\(imdbID)")
+        
+        Service.performRequest(url: url, expecting: MovieDetails.self) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error as! APIError))
+            case .success(let response):
+                if response.response == "True" {
                     DispatchQueue.main.async {
-                        completion(.success(movieDetails))
+                        completion(.success(response))
                     }
-                } else if movieDetails.response == "False" {
+                } else if response.response == "False" {
                     DispatchQueue.main.async {
-                        guard let responseError = movieDetails.error else { return }
+                        guard let responseError = response.error else { return }
                         if responseError == "Incorrect IMDb ID." {
-                            completion(.failure(.invalidID))
+                            completion(.failure(APIError.invalidID))
                         } else if responseError == "Error getting data." {
-                            completion(.failure(.IDNotFoundError))
+                            completion(.failure(APIError.IDNotFoundError))
                         }
                     }
                 }
-            } catch {
-                DispatchQueue.main.async {
-                    completion(.failure(.parsingError))
-                }
             }
         }
-        task.resume()
     }
-}
-
-public enum APIError: Error {
-    case serverError
-    case invalidID
-    case parsingError
-    case IDNotFoundError
 }
