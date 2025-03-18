@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "SearchMDFramework"
-  spec.version      = "0.0.1-alpha"
+  spec.version      = "main"
   spec.summary      = "A framework that is used for api calls for omdbAPI to retrieve search results and movie details"
 
   # This description is used to generate tags and improve search results.
